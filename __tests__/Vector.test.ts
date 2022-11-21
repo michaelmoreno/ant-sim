@@ -87,3 +87,27 @@ describe("arithmetic operations", () => {
         expect(vector.y).toBe(5)
     })
 })
+
+describe("general methods", () => {
+    let vector: Vector
+    
+    beforeEach(() => {
+        vector = new Vector(3, 4)
+    })
+
+    it('limits magnitude', () => {
+        vector.limit(3)
+        expect(vector.magnitude).toBe(3)
+        expect(vector.x).toBeCloseTo(1.8)
+        expect(vector.y).toBeCloseTo(2.4)
+    })
+    it("normalizes", () => {
+        vector.normalize()
+        expect(vector.magnitude).toBe(1)
+    })
+    it("clones", () => {
+        const clone = vector.clone()
+        expect(clone.x).toBe(vector.x)
+        expect(clone.y).toBe(vector.y)
+    })
+})

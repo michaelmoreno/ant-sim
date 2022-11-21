@@ -54,6 +54,18 @@ class Vector {
         this.y /= scalar
         return this
     }
+    limit(max: number): Vector {
+        if (this.magnitude > max)
+            this.magnitude = max
+        return this
+    }
+    normalize(): Vector {
+        this.magnitude = 1
+        return this
+    }
+    clone(): Vector {
+        return new Vector(this.x, this.y)
+    }
 }
 
 export default Vector
