@@ -111,3 +111,40 @@ describe("general methods", () => {
         expect(clone.y).toBe(vector.y)
     })
 })
+
+describe("static methods", () => {
+    it("adds", () => {
+        const vector = Vector.add([1, 2], new Vector(3, 4), [5, 6])
+        expect(vector.x).toBe(9)
+        expect(vector.y).toBe(12)
+    })
+    it("subtracts", () => {
+        const vector = Vector.subtract(new Vector(3, 4), [1, 2], [-1, -2])
+        expect(vector.x).toBe(3)
+        expect(vector.y).toBe(4)
+    })
+    it("multiplies", () => {
+        const vector = Vector.multiply([1, 2], 2)
+        expect(vector.x).toBe(2)
+        expect(vector.y).toBe(4)
+    })
+    it("divides", () => {
+        const vector = Vector.divide([1, 2], 2)
+        expect(vector.x).toBe(0.5)
+        expect(vector.y).toBe(1)
+    })
+    it("limits magnitude", () => {
+        const vector = Vector.limit([3, 4], 3)
+        expect(vector.magnitude).toBe(3)
+        expect(vector.x).toBeCloseTo(1.8)
+        expect(vector.y).toBeCloseTo(2.4)
+    })
+    it("normalizes", () => {
+        const vector = Vector.normalize([3, 4])
+        expect(vector.magnitude).toBe(1)
+    })
+    it("dot product", () => {
+        const dot = Vector.dot([2, 2], [3, 4])
+        expect(dot).toBe(14)
+    })
+})

@@ -66,6 +66,41 @@ class Vector {
     clone(): Vector {
         return new Vector(this.x, this.y)
     }
+    static add(vector: Vector | [number,number], ...vectors: (Vector|[number,number])[]): Vector {
+        let base = vector instanceof Vector ? vector.clone() : new Vector(vector[0], vector[1])
+        return vectors.reduce((v1: Vector, v2) => v1.add(v2), base)
+    }
+    static subtract(vector: Vector | [number,number], ...vectors: (Vector|[number,number])[]): Vector {
+        let base = vector instanceof Vector ? vector.clone() : new Vector(vector[0], vector[1])
+        return vectors.reduce((v1: Vector, v2) => v1.subtract(v2), base)
+    }
+    static multiply(vector: Vector | [number,number], scalar: number): Vector {
+        let base = vector instanceof Vector ? vector.clone() : new Vector(vector[0], vector[1])
+        return base.multiply(scalar)
+    }
+    static divide(vector: Vector | [number,number], scalar: number): Vector {
+        let base = vector instanceof Vector ? vector.clone() : new Vector(vector[0], vector[1])
+        return base.divide(scalar)
+    }
+    static limit(vector: Vector | [number,number], max: number): Vector {
+        let base = vector instanceof Vector ? vector.clone() : new Vector(vector[0], vector[1])
+        return base.limit(max)
+    }
+    static normalize(vector: Vector | [number,number]): Vector {
+        let base = vector instanceof Vector ? vector.clone() : new Vector(vector[0], vector[1])
+        return base.normalize()
+    }
+    static dot(vector: Vector | [number,number], ...vectors: (Vector|[number,number])[]): number {
+        let dp = 0
+        for (let v of vectors) {
+            let v2 = v instanceof Vector ? v : new Vector(v[0], v[1])
+            if (vector instanceof Vector)
+                dp += vector.x * v2.x + vector.y * v2.y
+            else
+                dp += vector[0] * v2.x + vector[1] * v2.y
+        }
+        return dp
+    }
 }
 
 export default Vector
