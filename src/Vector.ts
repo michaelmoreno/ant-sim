@@ -34,6 +34,26 @@ class Vector {
         this._x = Math.cos(this._angle) * this._magnitude
         this._y = Math.sin(this._angle) * this._magnitude
     }
+    add(vector: Vector | [number, number]): Vector {
+        this.x += vector instanceof Vector ? vector.x : vector[0]
+        this.y += vector instanceof Vector ? vector.y : vector[1]
+        return this
+    }
+    subtract(vector: Vector | [number, number]): Vector {
+        this.x -= vector instanceof Vector ? vector.x : vector[0]
+        this.y -= vector instanceof Vector ? vector.y : vector[1]
+        return this
+    }
+    multiply(scalar: number): Vector {
+        this.x *= scalar
+        this.y *= scalar
+        return this
+    }
+    divide(scalar: number): Vector {
+        this.x /= scalar
+        this.y /= scalar
+        return this
+    }
 }
 
 export default Vector

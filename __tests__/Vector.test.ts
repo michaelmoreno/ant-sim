@@ -1,6 +1,6 @@
 import Vector from "../src/Vector";
 
-describe("Vector", () => {
+describe("properties", () => {
     let vector: Vector
 
     beforeEach(() => {
@@ -41,5 +41,49 @@ describe("Vector", () => {
         expect(vector.y).toBe(0)
         expect(vector.angle).toBeCloseTo(0.927)
         expect(vector.magnitude).toBe(0)
+    })
+})
+
+describe("arithmetic operations", () => {
+    let vector: Vector
+    
+    beforeEach(() => {
+        vector = new Vector(3, 4)
+    })
+
+    it("adds tuple", () => {
+        vector.add([1, 2])
+        expect(vector.x).toBe(4)
+        expect(vector.y).toBe(6)
+    })
+    it("adds vector", () => {
+        vector.add(new Vector(1,2))
+        expect(vector.x).toBe(4)
+        expect(vector.y).toBe(6)
+    })
+    it("subtracts tuple", () => {
+        vector.subtract([1, 2])
+        expect(vector.x).toBe(2)
+        expect(vector.y).toBe(2)
+    })
+    it("subtracts vector", () => {
+        vector.subtract(new Vector(1,2))
+        expect(vector.x).toBe(2)
+        expect(vector.y).toBe(2)
+    })
+    it("multiplies", () => {
+        vector.multiply(2)
+        expect(vector.x).toBe(6)
+        expect(vector.y).toBe(8)
+    })
+    it("divides", () => {
+        vector.divide(2)
+        expect(vector.x).toBe(1.5)
+        expect(vector.y).toBe(2)
+    })
+    it("chains operations", () => {
+        vector.add([1, 2]).subtract([2, 1]).multiply(2).divide(2)
+        expect(vector.x).toBe(2)
+        expect(vector.y).toBe(5)
     })
 })
