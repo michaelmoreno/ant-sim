@@ -24,6 +24,16 @@ abstract class Agent {
             .limit(this.maxSteer)
         this.acceleration.add(force.divide(this.mass))
     }
+    wander(distance: number): void {
+        let circleCenter = this.velocity.clone()
+            .normalize()
+            .multiply(distance)
+            .add(this.position)
+
+        
+        this.acceleration.add(wanderForce.divide(this.mass))
+    }
+
     update(): void {
         this.velocity.add(this.acceleration)
         this.position.add(this.velocity)
